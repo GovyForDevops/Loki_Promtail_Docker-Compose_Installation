@@ -1,0 +1,13 @@
+docker run -d \
+  --name loki \
+  -p 3100:3100 \
+  -v /home/devops/loki-config.yaml:/etc/loki/local-config.yaml \
+  grafana/loki:latest \
+  -config.file=/etc/loki/local-config.yaml
+
+
+docker run -it --rm \
+  -v /home/devops/promtail-config.yaml:/etc/promtail/config.yml \
+  -v /var/log:/var/log \
+  grafana/promtail:latest \
+  -config.file=/etc/promtail/config.yml
